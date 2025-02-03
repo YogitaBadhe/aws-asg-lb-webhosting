@@ -20,7 +20,7 @@ Before you begin, ensure you have the following:
 To get started, clone this repository and navigate into the project directory:
 ```sh
 # Clone the repository
-git clone https://github.com/atulkamble/aws-asg-lb-webhosting.git
+git clone https://github.com/YogitaBadhe/aws-asg-lb-webhosting.git
 
 # Change to the project directory
 cd aws-asg-lb-webhosting.git
