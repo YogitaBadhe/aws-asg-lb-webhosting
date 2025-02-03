@@ -1,44 +1,62 @@
-# Automated Deployment of Web Servers with Auto Scaling Group and Load Balancer
+# 🚀 Automated Deployment of Web Servers with Auto Scaling Group & Load Balancer
 
-## Overview
-This project demonstrates the deployment of a scalable web server environment using AWS Auto Scaling Groups (ASG) in conjunction with an Elastic Load Balancer (ELB). By following this guide, you will be able to create a highly available and scalable web server infrastructure that automatically adjusts capacity based on demand.
+## 📌 Introduction
+This project demonstrates the **automated deployment** of a scalable web server environment using **AWS Auto Scaling Groups (ASG)** and **Elastic Load Balancer (ELB)**. It ensures **high availability, scalability, and load balancing** for your applications. By following this guide, you'll deploy a robust infrastructure capable of handling variable traffic loads efficiently.
 
-## Prerequisites
-Before proceeding with the deployment, ensure you have the following:
-- An AWS account with appropriate IAM permissions.
-- AWS CLI installed and configured.
-- Basic knowledge of AWS services, including EC2, Auto Scaling Groups, and Load Balancers.
-- Git installed on your local machine.
-- SSH key pair set up in AWS for accessing EC2 instances.
+---
 
-## Clone the Repository
+## 🛠️ Prerequisites
+Before you begin, ensure you have the following:
+
+- ✅ **AWS Account** with access to EC2, Auto Scaling Groups, and Load Balancer services.
+- ✅ **AWS CLI** installed and configured on your local machine.
+- ✅ **IAM User/Role** with necessary permissions for ASG and Load Balancer.
+- ✅ **Basic Knowledge of AWS & Linux** (recommended for troubleshooting).
+- ✅ **Git Installed** to clone the repository.
+
+---
+
+## 📥 Clone Repository
+To get started, clone this repository and navigate into the project directory:
 ```sh
-# Clone the GitHub repository
-git clone https://github.com/YogitaBadhe/aws-asg-lb-webhosting.git
+# Clone the repository
+git clone https://github.com/atulkamble/aws-asg-lb-webhosting.git
 
-# Navigate into the project directory
-cd aws-asg-lb-webhosting
+# Change to the project directory
+cd aws-asg-lb-webhosting.git
 ```
 
-## Deployment Steps
+---
 
-### 1. Configure Security Groups (SG)
-- **Instance-Level SG:** Ensure that the security group associated with EC2 instances allows HTTP (port 80) and HTTPS (port 443) traffic.
-- **Load Balancer SG:** Configure the security group for the Load Balancer to permit HTTP (port 80) and HTTPS (port 443) traffic.
+## 📌 Key Features
+- **Elastic Load Balancing**: Distributes traffic across multiple instances.
+- **Auto Scaling Group**: Dynamically scales EC2 instances based on demand.
+- **Automated Web Server Setup**: Deploys a web server with required configurations.
+- **Security Best Practices**: Ensures proper security group configurations.
 
-### 2. Instance-Level Configuration
-- **Package Management:** Install necessary packages and configure paths.
-- **Web Server Path and Port:**
-  - **Linux:** `/var/www/html/index.html` (Port 80)
-  - **Windows:** `C:/inetpub/wwwroot/index.html` (Port 80)
+---
 
-### 3. Create an Auto Scaling Group (ASG)
-- Define the parameters for the ASG, including minimum, maximum, and desired capacities.
+## ⚙️ Configuration Details
 
-### 4. Create Launch Configuration/Template
-- **AMI Selection:** Use an Amazon Linux AMI or another Linux-based AMI.
-- **User Data Script:** Add the following script to initialize the instances:
+### 🔒 Security Group Settings
+- **Instance-Level Security Group**
+  - Allow **HTTP (Port 80)** and **HTTPS (Port 443)** traffic.
+- **Load Balancer Security Group**
+  - Ensure that it allows HTTP & HTTPS traffic as well.
 
+### 📂 Web Server Configuration
+- **Linux Web Server Path:** `/var/www/html/index.html` (Port 80)
+- **Windows Web Server Path:** `C:/inetpub/wwwroot/index.html` (Port 80)
+
+---
+
+## 🚀 Deployment Steps
+### 🏗️ 1. Create Auto Scaling Group (ASG)
+- Define **minimum, maximum, and desired** capacities for the web server instances.
+
+### ⚙️ 2. Create Launch Configuration/Template
+- Use an **Amazon Linux AMI** or any **Linux-based AMI**.
+- Insert the following **user data script** to configure the web server:
 ```bash
 #!/bin/bash
 yum update -y
@@ -51,33 +69,34 @@ cd /var/www/html
 echo "<h1>Hello from $(hostname -f) webserver</h1>" > /var/www/html/index.html
 ```
 
-### 5. Choose Instance Type
-- **On-Demand or Spot Instances:** Decide between on-demand or spot instances based on cost and availability requirements.
+### 🖥️ 3. Choose Instance Type
+- Decide between **On-Demand** or **Spot Instances** based on cost and availability.
 
-### 6. Define Scaling Parameters
-- Configure the **desired capacity**, **maximum capacity**, and **minimum capacity** settings for the ASG.
+### 📊 4. Define Scaling Parameters
+- Configure **desired capacity, maximum capacity, and minimum capacity** for the ASG.
 
-### 7. Attach Load Balancer to ASG
-- Link the **Elastic Load Balancer** to the Auto Scaling Group to distribute incoming traffic evenly.
+### 🔗 5. Attach Load Balancer to ASG
+- Link the **Elastic Load Balancer** to the ASG to distribute incoming traffic.
 
-### 8. Verify Deployment
-- **EC2 Management Console:** Monitor instance health and status.
-- **Testing:**
-  - Obtain the public IP of an instance and verify it serves content via a web browser.
-  - Check if the Load Balancer properly routes traffic to healthy instances.
+### ✅ 6. Verify Deployment
+- Use **EC2 Management Console** to monitor instance health.
 
-## Cleanup
-To remove the deployed resources and avoid unnecessary costs:
+### 🔎 7. Testing Your Deployment
+- **Public IP Test**: Get the **public IP** of an instance and open it in a browser.
+- **Load Balancer Test**: Ensure the **Load Balancer** is properly routing traffic.
 
-### 1. Delete Auto Scaling Group (ASG)
-- The associated EC2 instances will be terminated automatically.
+---
 
-### 2. Delete Target Group
-- Remove the target group from the Load Balancer configuration.
+## 🧹 Cleanup (Resource Deletion)
+To avoid unnecessary costs, remove the created resources after testing:
 
-### 3. Delete Load Balancer
-- Remove the Elastic Load Balancer to complete the cleanup process.
+1. **Delete Auto Scaling Group** (This will terminate associated instances).
+2. **Delete Target Group** from the Load Balancer configuration.
+3. **Delete Load Balancer** to free up resources.
 
-## Summary
-This project provides a detailed step-by-step guide to deploying a scalable web server infrastructure using AWS services. It ensures high availability and load balancing for your applications, making it suitable for production environments where scalability and reliability are critical.
+---
 
+## 🎯 Conclusion
+This guide provides a **step-by-step approach** to deploying a **scalable, high-availability** web server infrastructure on AWS using **Auto Scaling Groups** and **Load Balancer**. Happy deploying! 🚀🎉
+
+---
